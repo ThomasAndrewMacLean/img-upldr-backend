@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV === "dev") {
+  require("dotenv-json")();
+}
+
 const express = require("express");
 const logger = require("volleyball");
 const bodyParser = require("body-parser");
@@ -32,6 +36,55 @@ if (process.env.NODE_ENV === "dev") {
   const monkdb = monk(url2);
   db = monkdb.get("data");
 }
+
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const aws = require("aws-sdk");
+aws.config.update({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  region: "eu-west-1",
+  secretAccessKey: process.env.SECRET_ACCESS_KEY
+});
+
+const s3 = new aws.S3();
+const upload = multer({
+  storage: multerS3({
+    acl: "public-read",
+    bucket: "imgupldrbucket",
+    metadata(req, file, cb) {
+      cb(null, { fieldName: "file.fieldname" });
+    },
+    key(req, file, cb) {
+      cb(null, Date.now().toString());
+    },
+    s3
+  })
+});
+
+const singleUpload = upload.single("image");
+
+app.post("/image-upload", (req, res) => {
+  singleUpload(req, res, err => {
+    if (err) {
+      return res.status(422).send({
+        errors: [{ title: "Image Upload Error", detail: err.message }]
+      });
+    }
+
+    const imageUrl = req.file.location;
+
+    const data = {};
+    data.imageUrl = imageUrl;
+    data.timestamp = Date.now();
+    db.insert(data, (err, doc) => {
+      if (err) {
+        console.log(err);
+        res.json(err);
+      }
+      res.json(doc);
+    });
+  });
+});
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
