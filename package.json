@@ -1,0 +1,23 @@
+{
+    "name": "img-upldr-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "dev": "NODE_ENV=dev nodemon app.js",
+        "start": "node app.js",
+        "step1": "claudia generate-serverless-express-proxy --region eu-west-1 --express-module app  --profile claudiaJS",
+        "step2": "claudia create --handler lambda.handler --deploy-proxy-api --region eu-west-1  --profile claudiaJS",
+        "update": "claudia update --set-env-from-json .env.json --profile claudiaJS"
+    },
+    "keywords": [],
+    "author": "Thomas MacLean <hello@thomasmaclean.be> (https://thomasmaclean.be)",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "nedb": "^1.8.0",
+        "volleyball": "^1.5.1"
+    }
+}
