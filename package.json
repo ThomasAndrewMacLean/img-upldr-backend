@@ -19,5 +19,8 @@
         "express": "^4.17.1",
         "nedb": "^1.8.0",
         "volleyball": "^1.5.1"
+    },
+    "devDependencies": {
+        "claudia": "^5.5.0"
     }
 }
