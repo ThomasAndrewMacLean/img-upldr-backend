@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "img-upldr-backend-executor",
+    "name": "img-upldr-backend",
+    "region": "eu-west-1"
+  },
+  "api": {
+    "id": "afh7v9mdo0"
+  }
+}
