@@ -99,18 +99,23 @@ app.get("/images", (req, res) => {
   });
 });
 
-// app.post("/data", (req, res) => {
-//   const data = req.body;
-//   data.timestamp = Date.now();
-//   db.insert(data, (err, doc) => {
-//     if (err) {
-//       console.log(err);
+app.post("/love", (req, res) => {
+  const { imageId, personId } = req.body;
 
-//       res.json(err);
-//     }
-//     res.json(doc);
-//   });
-// });
+  const like = {
+    _id: imageId,
+    personId
+  };
+
+  db.insert(like, (err, doc) => {
+    if (err) {
+      console.log(err);
+
+      res.json(err);
+    }
+    res.json(doc);
+  });
+});
 
 if (process.env.NODE_ENV === "dev") {
   app.listen(process.env.PORT || 3000, () =>

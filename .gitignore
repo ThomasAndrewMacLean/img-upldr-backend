@@ -61,5 +61,3 @@ typings/
 .next
 .env.json
 database
-database-dev.db
-database-production.db
