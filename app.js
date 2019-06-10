@@ -88,8 +88,8 @@ app.post("/image-upload", (req, res) => {
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.get("/data", (req, res) => {
-  db.find({}, function(err, docs) {
+app.get("/images", (req, res) => {
+  db.find({ imageUrl: { $exists: true } }, function(err, docs) {
     if (err) {
       console.log(err);
 
@@ -99,18 +99,18 @@ app.get("/data", (req, res) => {
   });
 });
 
-app.post("/data", (req, res) => {
-  const data = req.body;
-  data.timestamp = Date.now();
-  db.insert(data, (err, doc) => {
-    if (err) {
-      console.log(err);
+// app.post("/data", (req, res) => {
+//   const data = req.body;
+//   data.timestamp = Date.now();
+//   db.insert(data, (err, doc) => {
+//     if (err) {
+//       console.log(err);
 
-      res.json(err);
-    }
-    res.json(doc);
-  });
-});
+//       res.json(err);
+//     }
+//     res.json(doc);
+//   });
+// });
 
 if (process.env.NODE_ENV === "dev") {
   app.listen(process.env.PORT || 3000, () =>
