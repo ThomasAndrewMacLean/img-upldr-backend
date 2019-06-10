@@ -7,6 +7,8 @@
     "api": {
         "id": "afh7v9mdo0"
     },
-    "aws_access_key_id": "$YOUR_ACCESS_KEY",
-    "aws_secret_access_key": "$YOUR_ACCESS_SECRET"
+    "credentials": {
+        "aws_access_key_id": "$YOUR_ACCESS_KEY",
+        "aws_secret_access_key": "$YOUR_ACCESS_SECRET"
+    }
 }
