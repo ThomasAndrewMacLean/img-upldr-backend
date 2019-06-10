@@ -1,7 +1,9 @@
 language: node_js
 node_js:
-  - "7"
-install:
-  - npm install
+  - "node"
+cache:
+  directories:
+    - "node_modules" # This will tell Travis CI to cache the dependencies
 script:
-  - npm run travis
+  - npm install
+  - npm run deploy-travis # Here you could also run the build step of your application

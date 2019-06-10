@@ -9,7 +9,7 @@
         "step1": "claudia generate-serverless-express-proxy --region eu-west-1 --express-module app  --profile claudiaJS",
         "step2": "claudia create --handler lambda.handler --deploy-proxy-api --region eu-west-1  --profile claudiaJS",
         "update": "claudia update --set-env-from-json .env.json --profile claudiaJS",
-        "travis": "claudia update --key $YOUR_ACCESS_KEY --secret $YOUR_ACCESS_SECRET"
+        "deploy-travis": "claudia update --set-env NODE_ENV=$NODE_ENV,MONGOPW=$MONGOPW,ACCESS_KEY_ID=$ACCESS_KEY_ID,SECRET_ACCESS_KEY=$SECRET_ACCESS_KEY"
     },
     "keywords": [],
     "author": "Thomas MacLean <hello@thomasmaclean.be> (https://thomasmaclean.be)",
