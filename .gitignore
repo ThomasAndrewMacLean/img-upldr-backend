@@ -60,3 +60,6 @@ typings/
 # next.js build output
 .next
 .env.json
+database
+database-dev.db
+database-production.db
