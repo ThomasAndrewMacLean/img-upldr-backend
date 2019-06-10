@@ -2,13 +2,13 @@
     "lambda": {
         "role": "img-upldr-backend-executor",
         "name": "img-upldr-backend",
-        "region": "eu-west-1"
+        "region": "eu-west-1",
+        "aws_access_key_id": "$YOUR_ACCESS_KEY",
+        "aws_secret_access_key": "$YOUR_ACCESS_SECRET"
     },
     "api": {
         "id": "afh7v9mdo0"
     },
     "credentials": {
-        "aws_access_key_id": "$YOUR_ACCESS_KEY",
-        "aws_secret_access_key": "$YOUR_ACCESS_SECRET"
     }
 }
