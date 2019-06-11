@@ -107,7 +107,7 @@ app.post("/love", (req, res) => {
     personId
   };
 
-  db.update({ imageUrl: imageId }, { $push: { likes: personId } }, function(
+  db.update({ imageUrl: imageId }, { $addToSet: { likes: personId } }, function(
     err,
     docs
   ) {
