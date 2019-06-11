@@ -107,13 +107,16 @@ app.post("/love", (req, res) => {
     personId
   };
 
-  db.insert(like, (err, doc) => {
+  db.update({ imageUrl: imageId }, { $push: { likes: personId } }, function(
+    err,
+    docs
+  ) {
     if (err) {
       console.log(err);
 
-      res.json(err);
+      res.end();
     }
-    res.json(doc);
+    res.json(docs);
   });
 });
 
